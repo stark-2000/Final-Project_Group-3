@@ -1,54 +1,50 @@
-[![Build Status](https://coveralls.io/repos/github/stark-2000/Final-Project_Group-3/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/stark-2000/Final-Project_Group-3/actions/workflows/build_and_coveralls.yml)
+[![Build Status](https://github.com/stark-2000/Final-Project_Group-3/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/stark-2000/Final-Project_Group-3/actions/workflows/build_and_coveralls.yml)
 [![Coverage Status](https://coveralls.io/repos/github/stark-2000/Final-Project_Group-3/badge.svg?branch=main)](https://coveralls.io/github/stark-2000/Final-Project_Group-3?branch=main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ---
-# Acme's Perception Robotic Module
+# Acme's Autonomous Robot
 
 ## Disclaimer
- - License: BSD 
- - License File: LICENSE.txt (in the project directory)
+ - License: MIT  
+ - License File: LICENSE (in the project directory)
    
 ## Project Overview and Description:
- - For the midterm project, me and my teammate have decided to choose Acme’s perception robotic module & work on the deliverables and provide a high-quality solution following the essential software engineering practices which they can directly integrate into their product.
- - Using openCV and HoG detector, humans are detected in a given frame and the head's pixel value is obtained. 
- - The result is passed on to the tracker function which compares the pixel values of detected humans with previous frame and assigns unique ID.
- - The location calculation function computes the 3D location of all detected humans in cartesian coordinates w.r.t to robot frame with some assumptions like average human height is 5ft 10", floor is flat and no camera lens distortion. 
- - This entire setup was implemented on a laptop with webcamera in real-time. After detection of humans, bounding boxes with a unique ID which was assigned by tracker function will be overlayed on video frame.
- - The below image is a sample output of the program in our project:
+ - For the final project, me and my teammate have decided to choose multi-robot/swarm action category for Acme’s new line up of autonomous robots. These are developed as part of a 5 year product road map for ACME in developing their fleet of autonomous. We will work on the deliverables and provide a high-quality solution following the essential software engineering practices which they can directly integrate into their product.
+ - We will deploy a swarm of 21 turtlebots, which will collectively perform a task of crossing a narrow passage. Their default pattern will be a square or rectangle. 
+ - Using LIDAR or 3D Camera on the leader robot, we will be checking for the narrow passage in the path of the leader robot. Once it's detected, the swarm will still move until the minimum threshold distance from the narrow passage is reached. This threshold is determined based on the no of robots in swarm and minimum space required for them to transform or deform into a specified pattern.
+ - The swarm will now transform into a line segment which has all the 21 turtlebots one behind the other. Then it will move through the narrow passage.
+ - LIDARs are also present on the left & right side of leader robot which will monitor for the end of narrow passage. Once the end is reached, the swarm will still continue to move until the minimum threshold distance is achieved. 
+ - Now the swarm will deform into it's default shape.
+ - Note that the minimum threshold distance will be determined based on the no of robots in swarm and total length and width they need if they were to form a straight line with one robot behind the other. Also the leader robot will be the one which is in the center of one of the sides of rectangle (when swarm is in default shape of rectangle or square) or it will be the first robot in line (when swarm is in a straight line - one robot behind the other). The leader robot will have 3 LIDARs or 3D camera.
+ - The level of autonomy discussed may be subject to the bounds of project timeline and may be altered if required.
+ - The below image is a sample representation of the swarm (for reference only):
 
- ![My Image](./readme_image/output.jpg)
+ ![My Image](./readme_image/TurtleBot_Swarm_Sample.jpg)
 
 
 ## Purpose of the Project
- - The purpose this project is to detect a human from the live feed from the camera and generate the co-ordinates of the location in the robot fixed frame. It shall also track the multiple human obstacles from the image.
+ - The purpose this project is to deploy simple swarm algorithm on 21 turtlebots to form and deform a pattern in order to navigate a narrow passage. Sensors like LIDAR or 3D camera will be  used to realize the idea and simulate the project in Gazebo.
  
 ## Personnel:
  - Dhinesh Rajasekaran 
     - UID: 119400241
  - Arshad Shaik
     - UID: 118438832
- 
-## Video Presentation:
- - https://youtu.be/AMKvC8GD-Lg - Phase 0
- - https://youtu.be/kq9s1iwcfdw - Phase 1
- - https://drive.google.com/file/d/12uLaFsCV9fPUkGabaN5A38qLslWNd6hp/view?usp=share_link - Phase 2
 
 ## Requirements: 
  - Laptop
- - Ubuntu
- - Webcam
- - VS Code
+ - Ubuntu 22.04
+ - VS Code/Terminal
+ - Gazebo
+ - ROS 2 Humble
  
 ## AIP Google Sheet
- - https://docs.google.com/spreadsheets/d/1C9AE03gUqFlZGb2_IyPfMfevvJ9ezGKtAxI_n_HEC9M/edit?usp=sharing
+ - https://docs.google.com/spreadsheets/d/1qG9Fnqy8YEA1hoCkJ37Z2tK7iZklYtnleDhth3kJcko/edit?usp=sharing
 
 ## Shareable link to sprint planning notes and review Google Doc
- - https://docs.google.com/document/d/1wD_bKCtLOdt1voyiwZQc1tobgl-Iy5lTP9kQC6JQSEE/edit?usp=sharing
+ - https://docs.google.com/document/d/1eRx1KWvxIhgsw_KE1Acz5M6SJKpdceUarCSzpB1HCdQ/edit?usp=sharing
  
 ## Dependencies
- - openCV C++ library (run below command to install)
-   ```
-   sudo apt install libopencv-dev python3-opencv
-   ```
  - doxygen (run below command to install)
    ```
    sudo apt install doxygen
@@ -57,55 +53,6 @@
    ```
    sudo apt install lcov
    ```
-   
-## How to build, run & test from command line
- - Run the following commands in order
-```
-git clone --recursive https://github.com/stark-2000/Midterm-Project_Group-8.git
-cd Midterm-Project_Group-8
-mkdir build
-cd build
-cmake ..
-make
-./test/cpp-test
-./app/shell-app
-```
- - press any key to exit
-
-## Command to check Google Style
-- From the Midterm-Project_Group-8 folder, run the below command
-```
-cpplint app/main.cpp app/openCV.cpp test/main.cpp test/test.cpp include/openCV.hpp > results/cpplintreport
-```
-## Command to run static code analysis
-- From the Midterm-Project_Group-8 folder, run the below command
-```
-cppcheck --enable=all --std=c++11 --suppress=missingIncludeSystem  ./app ./test > results/cppcheckreport
-cppcheck --enable=all --std=c++11 --suppress=missingIncludeSystem  ./include/openCV.hpp  > results/cppcheckreport_include_files
-```
-## Command to check code coverage
-- From the build directory run the following command
-```
-cmake -D COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug ../
-make
-make code_coverage
-```
-## How to generate Doxygen documentation from command line
-- From the app directory run the following command
-```
-doxygen main.cpp
-cd html
-firefox index.html
-```
-- From the app directory run the following command
-```
-doxygen openCV.cpp
-cd html
-firefox index.html
-```
-- From the include directory run the following command
-```
-doxygen openCV.hpp
-cd html
-firefox index.html
-```
+## ROS msg/srv
+- As per our project proposal, we are using turtlebot 3 in our project which doesn't need any additonal msg/srv to be created for the project realization. 
+- In the due course of the project or during further implementation, if required, we may adapt the same code we used in Week10 HW for implementing our own msg/srv in ROS 2. 
