@@ -56,3 +56,23 @@
 ## ROS msg/srv
 - As per our project proposal, we are using turtlebot 3 in our project which doesn't need any additonal msg/srv to be created for the project realization. 
 - In the due course of the project or during further implementation, if required, we may adapt the same code we used in Week10 HW for implementing our own msg/srv in ROS 2. 
+
+## Sections for Stubs:
+(Will be implemented by the next phase - before project implementation)
+
+## How to build, run & test from command line
+ - Run the following commands in order
+(will be added in next phase)
+
+## Command to check Google Style
+- From the Final-Project_Group-3 folder src directory, run the below command
+```
+cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order subscriber.cpp publisher.cpp > ./../results/cpplintreport
+```
+## Command to run static code analysis
+- From the Final-Project_Group-3 folder src directory, run the below command
+```
+cppcheck --enable=all --std=c++17 *.cpp --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression > ./../results/cppcheckreport
+```
+## Command to generatte doxygen documentation
+(will be added in next phase)
