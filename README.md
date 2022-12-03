@@ -58,10 +58,9 @@
 - In the due course of the project or during further implementation, if required, we may adapt the same code we used in Week10 HW for implementing our own msg/srv in ROS 2. 
 
 ## Sections for Stubs:
-(Will be implemented by the next phase - before project implementation)
+(Will be implemented in next phase - before project implementation)
 
 ## How to build, run & test from command line
- - Run the following commands in order
 (will be added in next phase)
 
 ## Command to check Google Style
