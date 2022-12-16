@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>swarm_robot_simulation</name>
+  <version>0.0.0</version>
+  <description>Line Formation Algo Swarm 2-wheeled-robot</description>
+  <maintainer email="dhineshrajasekaran@gmail.com">dhinesh</maintainer>
+  <license>MIT License</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>catkin_simple</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>swarm_robot_msg</build_depend>
+  <build_depend>swarm_robot_srv</build_depend>
+  <build_depend>swarm_robot_action</build_depend>
+  
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>swarm_robot_msgs</run_depend>
+  <run_depend>swarm_robot_action</run_depend>
+  <run_depend>swarm_robot_srv</run_depend>
+
+</package>    
