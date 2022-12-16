@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <name>catkin_simple</name>
+  <version>0.1.1</version>
+  <description>catkin, simpler</description>
+
+  <maintainer email="dhinesh@umd.edu">dhinesh</maintainer>
+  <license>MIT License</license>
+
+  <author email="dhinesh@umd.edu">dhinesh</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>catkin</run_depend>
+
+</package>
