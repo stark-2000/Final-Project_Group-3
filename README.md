@@ -84,11 +84,13 @@ catkin_make <tests>
 ```
 cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order subscriber.cpp publisher.cpp > ./../results/cpplintreport
 ```
+
 ## Command to run static code analysis
 - From the Final-Project_Group-3 folder src directory, run the below command
 ```
 cppcheck --enable=all --std=c++17 *.cpp --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression > ./../results/cppcheckreport
 ```
+
 ## Command to generatte doxygen documentation
 - Navigate to src directory of each package and execute the following
 - all the doxygen documentation is archived in src folder
@@ -97,7 +99,11 @@ doxygen <cpp file>
 cd html
 firefox index.html
 ```
+
 ## Demo PPT and Video
 - PPT: https://docs.google.com/presentation/d/1S7eiQK_cDZZD_ajEYcy1Xt_sfu_p7t0s/edit?usp=share_link&ouid=110156552288549701398&rtpof=true&sd=true
 - Video: https://drive.google.com/drive/folders/1F1mZT1n2O1A1o3VQYphDsl2LwNLuGBbg?usp=share_link
 
+## Quad Chart
+
+ ![My Image](./readme_image/quadchart.png)
