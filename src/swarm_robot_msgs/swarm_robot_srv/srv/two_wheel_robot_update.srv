@@ -1,0 +1,29 @@
+# request constants
+int32 CODE_DELETE = -1
+int32 CODE_DELETE_ALL = 0
+int32 CODE_ADD = 1
+# first letter of True and False should be capitalized
+bool ADD_MODE_RANDOM = False
+bool ADD_MODE_SPECIFIED = True
+# request fields
+# sign indicates add or delete, absolute value means quantity
+# 0 represents delete all
+int32 update_code
+bool add_mode
+# the distribution when randomly adding a robot
+float64 half_range
+# the position when specifically adding a robot
+float64[] position_2d
+---
+# response constants
+uint8 SUCCESS = 1
+uint8 ADD_FAIL_NO_RESPONSE = 2
+uint8 ADD_FAIL_TOO_CROWDED = 3
+    # too crowded when adding a number of robots
+uint8 ADD_FAIL_OCCUPIED = 4
+    # position ocupied when adding one robot
+uint8 DELETE_FAIL_NO_RESPONSE = 5
+uint8 DELETE_FAIL_EXCEED_QUANTITY = 6
+uint8 FAIL_OTHER_REASONS = 7
+# response fields
+uint8 response_code
