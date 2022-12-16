@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/stark-2000/Final-Project_Group-3/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/stark-2000/Final-Project_Group-3/actions/workflows/build_and_coveralls.yml)
+[![Build Status](https://github.com/stark-2000/Midterm-Project_Group-8/actions/workflows/build_and_coveralls.yml/badge.svg)](https://github.com/stark-2000/Midterm-Project_Group-8/actions/workflows/build_and_coveralls.yml)
 [![Coverage Status](https://coveralls.io/repos/github/stark-2000/Final-Project_Group-3/badge.svg?branch=main)](https://coveralls.io/github/stark-2000/Final-Project_Group-3?branch=main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ---
