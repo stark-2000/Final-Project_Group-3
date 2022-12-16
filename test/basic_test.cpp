@@ -118,7 +118,7 @@ TEST_F(TaskPlanningFixture, TrueIsTrueTest) {
   using SUBSCRIBER = rclcpp::Subscription<String>::SharedPtr;
   bool hasData = false;
   SUBSCRIBER subscription = node_->create_subscription<String>
-    ("topic", 10,
+    ("/swarm_sim/two_wheel_robot", 10,
      // Lambda expression begins
      [&](const std_msgs::msg::String& msg) {
        RCLCPP_INFO(node_->get_logger(), "I heard: '%s'", msg.data.c_str());
