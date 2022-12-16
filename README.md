@@ -90,6 +90,8 @@ cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_orde
 cppcheck --enable=all --std=c++17 *.cpp --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unmatchedSuppression > ./../results/cppcheckreport
 ```
 ## Command to generatte doxygen documentation
+- Navigate to src directory of each package and execute the following
+- all the doxygen documentation is archived in src folder
 ```
 doxygen <cpp file>
 cd html
