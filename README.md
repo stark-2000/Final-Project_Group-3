@@ -95,5 +95,7 @@ doxygen <cpp file>
 cd html
 firefox index.html
 ```
+## Demo PPT and Video
+- PPT: https://docs.google.com/presentation/d/1S7eiQK_cDZZD_ajEYcy1Xt_sfu_p7t0s/edit?usp=share_link&ouid=110156552288549701398&rtpof=true&sd=true
 - Video: https://drive.google.com/drive/folders/1F1mZT1n2O1A1o3VQYphDsl2LwNLuGBbg?usp=share_link
 
