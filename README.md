@@ -39,7 +39,7 @@
  - Gazebo
  - ROS1 noetic
  
-## AIP Google Sheet
+## AIP Google Sheet (added iteration 2 & 3)
  - https://docs.google.com/spreadsheets/d/1qG9Fnqy8YEA1hoCkJ37Z2tK7iZklYtnleDhth3kJcko/edit?usp=sharing
 
 ## Shareable link to sprint planning notes and review Google Doc
