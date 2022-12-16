@@ -42,7 +42,7 @@
 ## AIP Google Sheet (added iteration 2 & 3)
  - https://docs.google.com/spreadsheets/d/1qG9Fnqy8YEA1hoCkJ37Z2tK7iZklYtnleDhth3kJcko/edit?usp=sharing
 
-## Shareable link to sprint planning notes and review Google Doc
+## Shareable link to sprint planning notes and review Google Doc (added iteration 2 & 3)
  - https://docs.google.com/document/d/1eRx1KWvxIhgsw_KE1Acz5M6SJKpdceUarCSzpB1HCdQ/edit?usp=sharing
  
 ## Dependencies
