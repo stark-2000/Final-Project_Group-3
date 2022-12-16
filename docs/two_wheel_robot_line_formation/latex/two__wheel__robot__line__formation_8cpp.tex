@@ -1,0 +1,382 @@
+\hypertarget{two__wheel__robot__line__formation_8cpp}{}\doxysection{two\+\_\+wheel\+\_\+robot\+\_\+line\+\_\+formation.\+cpp File Reference}
+\label{two__wheel__robot__line__formation_8cpp}\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+
+
+This is a node which performs line formation of the swarm robots using linear fitting algorithm which basically uses 2 feedback vectors to allign the N robots in a line.  
+
+
+{\ttfamily \#include $<$gazebo\+\_\+msgs/\+Set\+Joint\+Properties.\+h$>$}\newline
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$swarm\+\_\+robot\+\_\+msg/two\+\_\+wheel\+\_\+robot.\+h$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$numeric$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for two\+\_\+wheel\+\_\+robot\+\_\+line\+\_\+formation.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{two__wheel__robot__line__formation_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_a8e6e9ba02f00a79bd214b842e2a7fa02}{two\+Wheel\+Robot\+Callback}} (const swarm\+\_\+robot\+\_\+msg\+::two\+\_\+wheel\+\_\+robot \&input\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em Function for callback for getting robot information. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_aaf197f973c9edcca9610fba8b86df471}{int\+To\+String}} (int a)
+\begin{DoxyCompactList}\small\item\em Function to convert int to string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_afd6c6873303e40c711bf3398e7f81810}{get\+Sign}} (double x)
+\begin{DoxyCompactList}\small\item\em Function to compare and return sign of a number provided as arguement. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_ae5cc123af9de7815ebbbfc9661435704}{linear\+\_\+fitting}} (const std\+::vector$<$ double $>$ \&x, const std\+::vector$<$ double $>$ \&y)
+\begin{DoxyCompactList}\small\item\em Linear fitting algorithm as referred from wiki and custom implementation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function which initialises R\+OS, receives command line arguement and executes data receiving from robots, current state, robot pose, velocity publishing feedback vector calc, fitting line calc and publishing data to robots. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_a84191fe4f021e2a9583c23c2dbc9383f}{T\+O\+P\+I\+C\+\_\+\+A\+C\+T\+I\+V\+E\+\_\+\+P\+E\+R\+I\+OD}}
+\begin{DoxyCompactList}\small\item\em threshold to tell if a topic is active \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_aba10a38b637ee5350f299e5f5319bcdc}\label{two__wheel__robot__line__formation_8cpp_aba10a38b637ee5350f299e5f5319bcdc}} 
+const double {\bfseries C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+E\+R\+I\+OD} = 0.\+001
+\item 
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a730ff661cbea839b33fe3ea95dd2f241}\label{two__wheel__robot__line__formation_8cpp_a730ff661cbea839b33fe3ea95dd2f241}} 
+double {\bfseries spring\+\_\+length} = 0.\+7
+\item 
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a3c0febf68f994b88c7fbf50da50e29ef}\label{two__wheel__robot__line__formation_8cpp_a3c0febf68f994b88c7fbf50da50e29ef}} 
+double \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_a3c0febf68f994b88c7fbf50da50e29ef}{sensing\+\_\+range}} = 2.\+0
+\begin{DoxyCompactList}\small\item\em sensing range for neighbouring robots \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_abaf7f028ce0e2dca9e5a26f0d335b39f}\label{two__wheel__robot__line__formation_8cpp_abaf7f028ce0e2dca9e5a26f0d335b39f}} 
+const double \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_abaf7f028ce0e2dca9e5a26f0d335b39f}{P\+E\+R\+P\+E\+N\+D\+I\+C\+U\+L\+A\+R\+\_\+\+P\+E\+R\+C\+E\+N\+T\+A\+GE}} = 0.\+1
+\begin{DoxyCompactList}\small\item\em For fusing two feedback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a169f549d0349f1ed2a89242a7893b82b}\label{two__wheel__robot__line__formation_8cpp_a169f549d0349f1ed2a89242a7893b82b}} 
+const double {\bfseries P\+A\+R\+A\+L\+L\+E\+L\+\_\+\+P\+E\+R\+C\+E\+N\+T\+A\+GE} = 1.\+0 -\/ \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_abaf7f028ce0e2dca9e5a26f0d335b39f}{P\+E\+R\+P\+E\+N\+D\+I\+C\+U\+L\+A\+R\+\_\+\+P\+E\+R\+C\+E\+N\+T\+A\+GE}}
+\item 
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_aab379edf40b95b724a2890d01addb27e}\label{two__wheel__robot__line__formation_8cpp_aab379edf40b95b724a2890d01addb27e}} 
+const double \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_aab379edf40b95b724a2890d01addb27e}{V\+E\+L\+\_\+\+R\+A\+T\+IO}} = 50.\+0
+\begin{DoxyCompactList}\small\item\em Ratio of wheel velocity to feedback vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a071e4acfacbadae49f2e383d9654c70a}\label{two__wheel__robot__line__formation_8cpp_a071e4acfacbadae49f2e383d9654c70a}} 
+const double \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_a071e4acfacbadae49f2e383d9654c70a}{L\+E\+F\+T\+\_\+\+W\+H\+E\+E\+L\+\_\+\+P\+O\+S\+I\+T\+I\+ON}} = -\/0.\+0157
+\begin{DoxyCompactList}\small\item\em Left wheel position -\/ negative. \end{DoxyCompactList}\item 
+const double \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_a6c74a9c96fd6984684d9804e7d52d43d}{R\+I\+G\+H\+T\+\_\+\+W\+H\+E\+E\+L\+\_\+\+P\+O\+S\+I\+T\+I\+ON}}
+\begin{DoxyCompactList}\small\item\em Right wheel position -\/ positive. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a604e528f6b789621dd857c667e87955a}\label{two__wheel__robot__line__formation_8cpp_a604e528f6b789621dd857c667e87955a}} 
+swarm\+\_\+robot\+\_\+msg\+::two\+\_\+wheel\+\_\+robot {\bfseries current\+\_\+robots}
+\item 
+ros\+::\+Time \mbox{\hyperlink{two__wheel__robot__line__formation_8cpp_ad559ddef8414e23a0043c5423c239b71}{two\+\_\+wheel\+\_\+robot\+\_\+topic\+\_\+timer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a node which performs line formation of the swarm robots using linear fitting algorithm which basically uses 2 feedback vectors to allign the N robots in a line. 
+
+\begin{DoxyAuthor}{Author}
+Dhinesh Rajasekaran, Arshad Shaik 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/12-\/08
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_afd6c6873303e40c711bf3398e7f81810}\label{two__wheel__robot__line__formation_8cpp_afd6c6873303e40c711bf3398e7f81810}} 
+\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}!getSign@{getSign}}
+\index{getSign@{getSign}!two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+\doxysubsubsection{\texorpdfstring{getSign()}{getSign()}}
+{\footnotesize\ttfamily int get\+Sign (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})}
+
+
+
+Function to compare and return sign of a number provided as arguement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Data to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 or -\/1 
+\end{DoxyReturn}
+$<$ Return sign of a number, used to decide relative position of a point and a line\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_aaf197f973c9edcca9610fba8b86df471}\label{two__wheel__robot__line__formation_8cpp_aaf197f973c9edcca9610fba8b86df471}} 
+\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}!intToString@{intToString}}
+\index{intToString@{intToString}!two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+\doxysubsubsection{\texorpdfstring{intToString()}{intToString()}}
+{\footnotesize\ttfamily std\+::string int\+To\+String (\begin{DoxyParamCaption}\item[{int}]{a }\end{DoxyParamCaption})}
+
+
+
+Function to convert int to string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Data to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ss 
+\end{DoxyReturn}
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_ae5cc123af9de7815ebbbfc9661435704}\label{two__wheel__robot__line__formation_8cpp_ae5cc123af9de7815ebbbfc9661435704}} 
+\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}!linear\_fitting@{linear\_fitting}}
+\index{linear\_fitting@{linear\_fitting}!two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+\doxysubsubsection{\texorpdfstring{linear\_fitting()}{linear\_fitting()}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ linear\+\_\+fitting (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{x,  }\item[{const std\+::vector$<$ double $>$ \&}]{y }\end{DoxyParamCaption})}
+
+
+
+Linear fitting algorithm as referred from wiki and custom implementation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Robot x position \\
+\hline
+{\em y} & Robot y position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 
+\end{DoxyReturn}
+$<$ linear fitting function, revised from C++11 implementation\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{two__wheel__robot__line__formation_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}!main@{main}}
+\index{main@{main}!two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function which initialises R\+OS, receives command line arguement and executes data receiving from robots, current state, robot pose, velocity publishing feedback vector calc, fitting line calc and publishing data to robots. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & stores the no of arguements to send \& receive in command line \\
+\hline
+{\em argv} & stores the actual arguement data to send and receive in command line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+$<$ handshake with robot name in parameter server
+
+$<$ get the settings for this simulation from private parameter
+
+$<$ delete parameter
+
+$<$ get sensing range
+
+$<$ instantiate a subscriber to topic \char`\"{}/swarm\+\_\+sim/two\+\_\+wheel\+\_\+robot\char`\"{}
+
+$<$ instantiate a service client for \char`\"{}/gazebo/set\+\_\+joint\+\_\+properties\char`\"{}
+
+$<$ in case of segmentation error
+
+$<$ line formation loop
+
+$<$ use to control loop rate
+
+$<$ stop all robots for one time when topic is inactive
+
+$<$ check if two wheel robot topic is active
+
+$<$ the topic is been actively published R\+O\+S\+\_\+\+W\+A\+RN(\char`\"{}topic is active\char`\"{});
+
+$<$ whether to print debug msg elsewhere
+
+$<$ at least 10 counts when averaging frequency
+
+$<$ interval should also be bigger than 1.\+0 sec
+
+$<$ reset loop count
+
+$<$ update last timer
+
+$<$ set the stop\+\_\+all\+\_\+robot\+\_\+once flag, prepare when topic out of active state
+
+$<$ 1)calculate distance between any two robots
+
+$<$ 3)initialize distance\+\_\+sort and index\+\_\+sort
+
+$<$ bubble from back to front to pop up the smaller ones
+
+$<$ switch between these two distances
+
+$<$ Print out number of neighbors in sensing range
+
+$<$ print multiple colomns in the terminal
+
+$<$ increment by 1 first thing in the loop
+
+$<$ robot count
+
+$<$ colomn control
+
+$<$ store the fitting result
+
+$<$ neighbors plus itself
+
+$<$ the slope
+
+$<$ the intercept
+
+$<$ in x and y directions
+
+$<$ slope intercept form, k and b are known parameters the perpendicular vector is \mbox{[}-\/k/(1+k$^\wedge$2)$\ast$(kx+b-\/y), 1/(1+k$^\wedge$2)$\ast$(kx+b-\/y)\mbox{]} with x and y being robot position
+
+$<$ initialize the distances with negative number
+
+$<$ calculate the signed distance, left is negative, right is positive
+
+$<$ neighbor robot on the left
+
+$<$ not overwrite with a value yet
+
+$<$ there is a closer neighbor at left side
+
+$<$ neighbor robot on the right
+
+$<$ not overwrite with a value yet
+
+$<$ there is a closer neighbor at right side
+
+$<$ signed distance equals 0, should not be here
+
+$<$ the spring effect of both sides
+
+$<$ robot has an effective neighbor at left side, left is negative
+
+$<$ robot has an effective neighbor at right side, right is positive
+
+$<$ calculate feedback vector based on robot side
+
+$<$ robot is at bottom side of fitted line
+
+$<$ robot is exactly on the fitted line, should not be here
+
+$<$ vel of left and right wheels
+
+$<$ relative angle between the feedback vector and the robot orientation
+
+$<$ both feedback vector direction and robot orientation are in range of \mbox{[}-\/M\+\_\+\+PI, M\+\_\+\+PI\mbox{]}
+
+$<$ the difference is in range of \mbox{[}-\/2$\ast$\+M\+\_\+\+PI, 2$\ast$\+M\+\_\+\+PI\mbox{]}, will convert to \mbox{[}-\/M\+\_\+\+PI, M\+\_\+\+PI\mbox{]}
+
+$<$ now we have relative direction and length of feedback vector next step is converting them to wheel rotation center and rotation direction wheel rotation center is on the axis of two rotation wheels left side is negative, right side is positive rotation direction is either ccw or cw, relative to wheel rotation center divide relative direction into four quarters
+
+$<$ going forward and rotate ccw, rotation center at left side
+
+$<$ the velocity of the center of the robot\+: feedback\+\_\+vector\+\_\+length\mbox{[}i\mbox{]} $\ast$ V\+E\+L\+\_\+\+R\+A\+T\+IO left wheel velocity
+
+$<$ right wheel velocity
+
+$<$ going backward and rotate cw, rotation center at left side
+
+$<$ wheel velocities
+
+$<$ going forward and rotate cw, rotation center at right side
+
+$<$ wheel velocities
+
+$<$ going backward and rotate ccw, rotation center at right side
+
+$<$ wheel velocities
+
+$<$ very unlikely here, just in case
+
+$<$ wheel velocities
+
+$<$ very unlikely here, just in case
+
+$<$ wheel velocities
+
+$<$ left wheel
+
+$<$ possibly the robot not found
+
+$<$ right wheel
+
+$<$ possibly the robot not found
+
+$<$ the topic is not active, meaning two wheel robot manager node is down
+
+$<$ set wheel velocity of all robots to zero according to last topic update
+
+$<$ left wheel
+
+$<$ possibly the robot not found
+
+$<$ right wheel
+
+$<$ possibly the robot not found
+
+$<$ let the global variables update\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a8e6e9ba02f00a79bd214b842e2a7fa02}\label{two__wheel__robot__line__formation_8cpp_a8e6e9ba02f00a79bd214b842e2a7fa02}} 
+\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}!twoWheelRobotCallback@{twoWheelRobotCallback}}
+\index{twoWheelRobotCallback@{twoWheelRobotCallback}!two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+\doxysubsubsection{\texorpdfstring{twoWheelRobotCallback()}{twoWheelRobotCallback()}}
+{\footnotesize\ttfamily void two\+Wheel\+Robot\+Callback (\begin{DoxyParamCaption}\item[{const swarm\+\_\+robot\+\_\+msg\+::two\+\_\+wheel\+\_\+robot \&}]{input\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+Function for callback for getting robot information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+msg} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+$<$ Callback for getting robot information\+:
+
+$<$ Update the time stamp every time the callback is invoked
+
+$<$ Update data in global variables so that it\textquotesingle{}s accessible everywhere
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a6c74a9c96fd6984684d9804e7d52d43d}\label{two__wheel__robot__line__formation_8cpp_a6c74a9c96fd6984684d9804e7d52d43d}} 
+\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}!RIGHT\_WHEEL\_POSITION@{RIGHT\_WHEEL\_POSITION}}
+\index{RIGHT\_WHEEL\_POSITION@{RIGHT\_WHEEL\_POSITION}!two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+\doxysubsubsection{\texorpdfstring{RIGHT\_WHEEL\_POSITION}{RIGHT\_WHEEL\_POSITION}}
+{\footnotesize\ttfamily const double R\+I\+G\+H\+T\+\_\+\+W\+H\+E\+E\+L\+\_\+\+P\+O\+S\+I\+T\+I\+ON}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    0.0157}
+
+\end{DoxyCode}
+
+
+Right wheel position -\/ positive. 
+
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_a84191fe4f021e2a9583c23c2dbc9383f}\label{two__wheel__robot__line__formation_8cpp_a84191fe4f021e2a9583c23c2dbc9383f}} 
+\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}!TOPIC\_ACTIVE\_PERIOD@{TOPIC\_ACTIVE\_PERIOD}}
+\index{TOPIC\_ACTIVE\_PERIOD@{TOPIC\_ACTIVE\_PERIOD}!two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+\doxysubsubsection{\texorpdfstring{TOPIC\_ACTIVE\_PERIOD}{TOPIC\_ACTIVE\_PERIOD}}
+{\footnotesize\ttfamily const double T\+O\+P\+I\+C\+\_\+\+A\+C\+T\+I\+V\+E\+\_\+\+P\+E\+R\+I\+OD}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    1.0}
+
+\end{DoxyCode}
+
+
+threshold to tell if a topic is active 
+
+\mbox{\Hypertarget{two__wheel__robot__line__formation_8cpp_ad559ddef8414e23a0043c5423c239b71}\label{two__wheel__robot__line__formation_8cpp_ad559ddef8414e23a0043c5423c239b71}} 
+\index{two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}!two\_wheel\_robot\_topic\_timer@{two\_wheel\_robot\_topic\_timer}}
+\index{two\_wheel\_robot\_topic\_timer@{two\_wheel\_robot\_topic\_timer}!two\_wheel\_robot\_line\_formation.cpp@{two\_wheel\_robot\_line\_formation.cpp}}
+\doxysubsubsection{\texorpdfstring{two\_wheel\_robot\_topic\_timer}{two\_wheel\_robot\_topic\_timer}}
+{\footnotesize\ttfamily ros\+::\+Time two\+\_\+wheel\+\_\+robot\+\_\+topic\+\_\+timer}
+
+Time stamp for callback, used to check topic activity 

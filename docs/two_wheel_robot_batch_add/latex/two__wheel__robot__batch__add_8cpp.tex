@@ -1,0 +1,91 @@
+\hypertarget{two__wheel__robot__batch__add_8cpp}{}\doxysection{two\+\_\+wheel\+\_\+robot\+\_\+batch\+\_\+add.\+cpp File Reference}
+\label{two__wheel__robot__batch__add_8cpp}\index{two\_wheel\_robot\_batch\_add.cpp@{two\_wheel\_robot\_batch\_add.cpp}}
+
+
+This is a node which adds a number of two wheel robots by talking to the manager node through the \char`\"{}/swarm\+\_\+sim/two\+\_\+wheel\+\_\+robot\+\_\+update\char`\"{} service.  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$swarm\+\_\+robot\+\_\+srv/two\+\_\+wheel\+\_\+robot\+\_\+update.\+h$>$}\newline
+Include dependency graph for two\+\_\+wheel\+\_\+robot\+\_\+batch\+\_\+add.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{two__wheel__robot__batch__add_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{two__wheel__robot__batch__add_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function which initialises R\+OS, adds no of 2 wheel robots by talking to manager service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a node which adds a number of two wheel robots by talking to the manager node through the \char`\"{}/swarm\+\_\+sim/two\+\_\+wheel\+\_\+robot\+\_\+update\char`\"{} service. 
+
+\begin{DoxyAuthor}{Author}
+Dhinesh Rajasekaran, Arshad Shaik 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/12-\/08
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{two__wheel__robot__batch__add_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{two__wheel__robot__batch__add_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{two\_wheel\_robot\_batch\_add.cpp@{two\_wheel\_robot\_batch\_add.cpp}!main@{main}}
+\index{main@{main}!two\_wheel\_robot\_batch\_add.cpp@{two\_wheel\_robot\_batch\_add.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function which initialises R\+OS, adds no of 2 wheel robots by talking to manager service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & stores the no of arguements to send \& receive in command line \\
+\hline
+{\em argv} & stores the actual arguement data to send and receive in command line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+$<$ private namespace, to get private parameters
+
+$<$ handshake with robot name in parameter server
+
+$<$ instantiate a service client
+
+$<$ service msg
+
+$<$ get the private parameters passed to this node parameter\+: robot\+\_\+quantity
+
+$<$ the default value
+
+$<$ delete this parameter, in case it will be reused because it continues to exist
+
+$<$ parameter\+: half\+\_\+range
+
+$<$ the default value
+
+$<$ prepare the service message
+
+$<$ call service to add robot repeatedly
+
+$<$ this is a moderate waiting time
+
+$<$ call the service to add one robot randomly
+
+$<$ keep trying for this case
+
+$<$ there is no reason to be here, otherwise there is problems in service request

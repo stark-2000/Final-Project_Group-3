@@ -1,0 +1,190 @@
+\hypertarget{two__wheel__robot__manager_8cpp}{}\doxysection{two\+\_\+wheel\+\_\+robot\+\_\+manager.\+cpp File Reference}
+\label{two__wheel__robot__manager_8cpp}\index{two\_wheel\_robot\_manager.cpp@{two\_wheel\_robot\_manager.cpp}}
+
+
+This is a node which manages the number and index of two wheel robots present.  
+
+
+{\ttfamily \#include $<$gazebo\+\_\+msgs/\+Delete\+Model.\+h$>$}\newline
+{\ttfamily \#include $<$gazebo\+\_\+msgs/\+Get\+Joint\+Properties.\+h$>$}\newline
+{\ttfamily \#include $<$gazebo\+\_\+msgs/\+Model\+States.\+h$>$}\newline
+{\ttfamily \#include $<$gazebo\+\_\+msgs/\+Spawn\+Model.\+h$>$}\newline
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Quaternion.\+h$>$}\newline
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$swarm\+\_\+robot\+\_\+msg/two\+\_\+wheel\+\_\+robot.\+h$>$}\newline
+{\ttfamily \#include $<$swarm\+\_\+robot\+\_\+srv/two\+\_\+wheel\+\_\+robot\+\_\+update.\+h$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for two\+\_\+wheel\+\_\+robot\+\_\+manager.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{two__wheel__robot__manager_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{two__wheel__robot__manager_8cpp_afa126d2654babe602ed8d7e44443e590}{two\+Wheel\+Robot\+Update\+Callback}} (swarm\+\_\+robot\+\_\+srv\+::two\+\_\+wheel\+\_\+robot\+\_\+update\+Request \&request, swarm\+\_\+robot\+\_\+srv\+::two\+\_\+wheel\+\_\+robot\+\_\+update\+Response \&response, ros\+::\+Service\+Client add\+\_\+model\+\_\+client, ros\+::\+Service\+Client delete\+\_\+model\+\_\+client, std\+::string two\+\_\+wheel\+\_\+robot\+\_\+urdf)
+\item 
+int \mbox{\hyperlink{two__wheel__robot__manager_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function which initialises R\+OS, manages no of robots and their index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{two__wheel__robot__manager_8cpp_ae2b284908f820a1cff09f980361d4652}{S\+A\+F\+E\+\_\+\+D\+I\+ST}}
+\begin{DoxyCompactList}\small\item\em $<$ the distance unit in gazebo is meter \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{two__wheel__robot__manager_8cpp_a604e528f6b789621dd857c667e87955a}\label{two__wheel__robot__manager_8cpp_a604e528f6b789621dd857c667e87955a}} 
+swarm\+\_\+robot\+\_\+msg\+::two\+\_\+wheel\+\_\+robot {\bfseries current\+\_\+robots}
+\item 
+\mbox{\Hypertarget{two__wheel__robot__manager_8cpp_a7c7ffd2bfa12ccb51beded8593fb61b7}\label{two__wheel__robot__manager_8cpp_a7c7ffd2bfa12ccb51beded8593fb61b7}} 
+bool \mbox{\hyperlink{two__wheel__robot__manager_8cpp_a7c7ffd2bfa12ccb51beded8593fb61b7}{robot\+\_\+position\+\_\+updated}} = false
+\begin{DoxyCompactList}\small\item\em quaternion =$>$ rotation angle of two wheel robot \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a node which manages the number and index of two wheel robots present. 
+
+\begin{DoxyAuthor}{Author}
+Dhinesh Rajasekaran, Arshad Shaik 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/12-\/08
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{two__wheel__robot__manager_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{two__wheel__robot__manager_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{two\_wheel\_robot\_manager.cpp@{two\_wheel\_robot\_manager.cpp}!main@{main}}
+\index{main@{main}!two\_wheel\_robot\_manager.cpp@{two\_wheel\_robot\_manager.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function which initialises R\+OS, manages no of robots and their index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & stores the no of arguements to send \& receive in command line \\
+\hline
+{\em argv} & stores the actual arguement data to send and receive in command line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+$<$ handshake with robot name in parameter server, and get model urdf
+
+$<$ return when parameter server is not good
+
+$<$ return when wrong robot manager is called
+
+$<$ gazebo not ready
+
+$<$ instantiate a publisher for the maintained information of two wheel robot
+
+$<$ instantiate a subscriber for \char`\"{}/gazebo/model\+\_\+states\char`\"{}
+
+$<$ this topic publish at 1000hz rate
+
+$<$ instantiate a service client to get wheel velocities
+
+$<$ instantiate a service client for \char`\"{}/gazebo/spawn\+\_\+urdf\+\_\+model\char`\"{}
+
+$<$ instantiate a service client for \char`\"{}/gazebo/delete\+\_\+model\char`\"{}
+
+$<$ instantiate a service server to modify the robots in gazebo add or delete robot models in gazebo
+
+$<$ publish loop the topic \char`\"{}/swarm\+\_\+sim/two\+\_\+wheel\+\_\+robot\char`\"{} will publish at full speed, as fast as possible but limited by model states callback (1000hz at most)
+
+$<$ get the wheel speed for the maintained robots
+
+$<$ only update wheel velocities when positions have been update by model states callback
+
+$<$ get left wheel velocity
+
+$<$ if call service not successful, it will leave the joint velocity unchanged
+
+$<$ joint not found, there is possible robot deletion the container doesn\textquotesingle{}t realize
+
+$<$ update the left wheel velocity
+
+$<$ do not return here
+
+$<$ if call service not successful, it will leave the joint velocity unchanged
+
+$<$ joint not found, there is possible robot deletion the container doesn\textquotesingle{}t realize
+
+$<$ update the right wheel velocity
+
+$<$ reset the position update flag\mbox{\Hypertarget{two__wheel__robot__manager_8cpp_afa126d2654babe602ed8d7e44443e590}\label{two__wheel__robot__manager_8cpp_afa126d2654babe602ed8d7e44443e590}} 
+\index{two\_wheel\_robot\_manager.cpp@{two\_wheel\_robot\_manager.cpp}!twoWheelRobotUpdateCallback@{twoWheelRobotUpdateCallback}}
+\index{twoWheelRobotUpdateCallback@{twoWheelRobotUpdateCallback}!two\_wheel\_robot\_manager.cpp@{two\_wheel\_robot\_manager.cpp}}
+\doxysubsubsection{\texorpdfstring{twoWheelRobotUpdateCallback()}{twoWheelRobotUpdateCallback()}}
+{\footnotesize\ttfamily bool two\+Wheel\+Robot\+Update\+Callback (\begin{DoxyParamCaption}\item[{swarm\+\_\+robot\+\_\+srv\+::two\+\_\+wheel\+\_\+robot\+\_\+update\+Request \&}]{request,  }\item[{swarm\+\_\+robot\+\_\+srv\+::two\+\_\+wheel\+\_\+robot\+\_\+update\+Response \&}]{response,  }\item[{ros\+::\+Service\+Client}]{add\+\_\+model\+\_\+client,  }\item[{ros\+::\+Service\+Client}]{delete\+\_\+model\+\_\+client,  }\item[{std\+::string}]{two\+\_\+wheel\+\_\+robot\+\_\+urdf }\end{DoxyParamCaption})}
+
+$<$ pre-\/set the response code to success, it changes to false when at least one false detected
+
+$<$ add or delete models in gazebo
+
+$<$ update code is a negative number, meaning delete a number of robots
+
+$<$ start randomly choose robot to delete
+
+$<$ repeat random deletion for \char`\"{}delete\+\_\+robot\+\_\+quantity\char`\"{} times index of the vector \char`\"{}container\+\_\+index\char`\"{}
+
+$<$ avoid deletion on same robot
+
+$<$ this error is categorized to others
+
+$<$ delete all robots sequentially, no need to randomly choose
+
+$<$ add one robot either at specified position or random position in range
+
+$<$ decide where the position comes from and check its effectiveness
+
+$<$ add a robot at random position in range defined
+
+$<$ already generate once
+
+$<$ generate new position until there is no collision
+
+$<$ position generated is still not availabe after 100 trials
+
+$<$ add a robot at specified position
+
+$<$ passed in position is occupied
+
+$<$ the container is empty, initialize with index 0
+
+$<$ queue after the last robot in the container
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{two__wheel__robot__manager_8cpp_ae2b284908f820a1cff09f980361d4652}\label{two__wheel__robot__manager_8cpp_ae2b284908f820a1cff09f980361d4652}} 
+\index{two\_wheel\_robot\_manager.cpp@{two\_wheel\_robot\_manager.cpp}!SAFE\_DIST@{SAFE\_DIST}}
+\index{SAFE\_DIST@{SAFE\_DIST}!two\_wheel\_robot\_manager.cpp@{two\_wheel\_robot\_manager.cpp}}
+\doxysubsubsection{\texorpdfstring{SAFE\_DIST}{SAFE\_DIST}}
+{\footnotesize\ttfamily const double S\+A\+F\+E\+\_\+\+D\+I\+ST}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    0.0465}
+
+\end{DoxyCode}
+
+
+$<$ the distance unit in gazebo is meter 
+
+the collision free distance between two robots global variables T\+HE container maintained by this node 
